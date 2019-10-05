@@ -49,3 +49,22 @@ label {
 a :hover {
   color: #fff;
 }
+
+.col-estado {
+  width: 120px;
+  text-align: center;
+}
+
+.col-ativo {
+  width: 120px;
+  text-align: center;
+}
+
+.link-status {
+  color: #000;
+}
+
+.link-status:hover {
+  color: #000;
+  text-decoration: underline;
+}
