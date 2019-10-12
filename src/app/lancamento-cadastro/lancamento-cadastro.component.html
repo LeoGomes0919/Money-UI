@@ -1,0 +1,62 @@
+<div class="container">
+  <form>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Novo Lançamento</h1>
+      </div>
+
+      <div class="ui-g-12">
+        <p-selectButton [options]="opcoes" #tipo></p-selectButton>
+      </div>
+
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>Vencimento</label>
+        <p-calendar [showIcon]="true" dateFormat="dd/mm/yy" [locale]="pt"></p-calendar>
+      </div>
+
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
+        <p-calendar [showIcon]="true" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+
+      <div class="ui-g-12 ui-md-10 ui-fluid">
+        <label>Descrição</label>
+        <input type="text" pInputText>
+      </div>
+
+      <div class="ui-g-12 ui-md-2 ui-fluid">
+        <label>Valor</label>
+        <input type="text" currencyMask pInputText placeholder="R$ 0,00" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" class="input-valor">
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Categoria</label>
+        <p-dropdown [options]="categorias" filter="true" placeholder="Selecione">
+          <ng-template let-categoria pTemplate="item">
+            <span>{{categoria.label}}</span>
+          </ng-template>
+        </p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Pessoa</label>
+        <p-dropdown [options]="pessoas" filter="true" placeholder="Selecione">
+            <ng-template let-pessoa pTemplate="item">
+              <span>{{pessoa.label}}</span>
+            </ng-template>
+          </p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Observação</label>
+        <textarea rows="3" cols="30" pInputTextarea autoResize="autoResize"></textarea>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" icon="pi pi-save"></button>
+        <button pButton type="button" label="Novo" icon="pi pi-plus" class="ui-button-info btn-novo"></button>
+        <a href="javascript:;" class="link-pesquisa">Voltar para a pesquisa</a>
+      </div>
+    </div>
+  </form>
+</div>

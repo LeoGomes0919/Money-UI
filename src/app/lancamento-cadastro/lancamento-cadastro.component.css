@@ -1,0 +1,15 @@
+.link-pesquisa {
+  margin-left: 0.5rem;
+}
+
+.link-pesquisa:hover {
+  text-decoration: underline;
+}
+
+.btn-novo {
+  margin-left: 0.5rem;
+}
+
+.input-valor {
+  text-align: right;
+}
