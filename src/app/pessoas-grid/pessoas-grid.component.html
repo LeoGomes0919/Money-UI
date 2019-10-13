@@ -1,0 +1,39 @@
+<p-table [responsive]="true" [value]="pessoas" [paginator]="true" [rows]="4">
+  <ng-template pTemplate="header" let-colunas>
+    <tr>
+      <th>Nome</th>
+      <th>Cidade</th>
+      <th class="col-estado">Estado - UF</th>
+      <th class="col-ativo">Ativo</th>
+      <th class="col-acao"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-pessoas>
+    <tr>
+      <td>
+        <span class="ui-column-title">Nome</span>
+        {{pessoas.nome}}
+      </td>
+      <td>
+        <span class="ui-column-title">Cidade</span>
+        {{pessoas.cidade}}
+      </td>
+      <td class="col-estado">
+        <span class="ui-column-title">Estado - UF</span>
+        {{pessoas.estado}}
+      </td>
+      <td class="col-ativo">
+        <span class="ui-column-title">Ativo</span>
+        <a href="javascript:;" class="link-status" [pTooltip]="pessoas.ativo === true ? 'Desativar' : 'Ativar'"
+          tooltipPosition="top">
+          {{pessoas.ativo === true ? 'Ativo' : 'Inativo'}}
+        </a>
+      </td>
+      <td class="col-acao">
+        <span class="ui-column-title"></span>
+        <a class="btn-editar" pTooltip="Editar" tooltipPosition="top" pButton icon="fa fa-pencil"></a>
+        <button class="btn-deletar" pTooltip="Excluir" tooltipPosition="top" pButton icon="fa fa-trash"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
