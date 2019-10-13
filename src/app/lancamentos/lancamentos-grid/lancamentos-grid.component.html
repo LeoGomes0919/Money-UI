@@ -25,7 +25,7 @@
       </td>
       <td class="col-data-field">
         <span class="ui-column-title">Pagamento</span>
-        {{lancamentos.dataPagamento | date:'dd/MM/y':'UTC-3':'pt'}}
+        {{lancamentos.dataPagamento | date:'dd/MM/y'}}
       </td>
       <td [ngStyle]="{ color: lancamentos.tipo === 'DESPESA' ? 'red' : 'blue' }" class="col-valor-field">
         <span class="ui-column-title" style="color: #000 !important;">Valor</span>
