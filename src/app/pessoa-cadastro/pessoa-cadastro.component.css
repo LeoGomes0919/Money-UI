@@ -1,0 +1,11 @@
+.btn-novo {
+  margin-left: 0.5rem;
+}
+
+.link-pesquisa {
+  margin-left: 0.5rem;
+}
+
+.link-pesquisa:hover {
+  text-decoration: underline;
+}
