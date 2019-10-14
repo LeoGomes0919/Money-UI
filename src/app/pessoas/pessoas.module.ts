@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { InputMaskModule } from 'primeng/inputmask';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -27,6 +28,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
+    SharedModule,
     InputTextModule,
     ButtonModule,
     TableModule,

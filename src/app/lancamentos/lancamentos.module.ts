@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { InputMaskModule } from 'primeng/inputmask';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { DropdownModule } from 'primeng/dropdown';
@@ -28,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
+    SharedModule,
     InputTextModule,
     ButtonModule,
     TableModule,
