@@ -12,7 +12,6 @@ import { InputTextModule } from 'primeng/inputtext';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
-import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 
 import { NgModule } from '@angular/core';
@@ -22,7 +21,6 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     LancamentoCadastroComponent,
-    LancamentosGridComponent,
     LancamentosPesquisaComponent
   ],
   imports: [

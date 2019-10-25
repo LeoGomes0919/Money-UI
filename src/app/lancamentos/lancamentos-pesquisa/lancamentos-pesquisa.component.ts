@@ -1,40 +1,48 @@
+import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit } from '@angular/core';
-
+import { LazyLoadEvent } from 'primeng/components/common/api';
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
   styleUrls: ['./lancamentos-pesquisa.component.css']
 })
-export class LancamentosPesquisaComponent {
+export class LancamentosPesquisaComponent implements OnInit {
 
-  lancamentos = [
-    {
-      tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2019, 6, 30),
-      dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José'
-    },
-    {
-      tipo: 'RECEITA', descricao: 'Venda de Software', dataVencimento: new Date(2019, 6, 10),
-      dataPagamento: new Date(2019, 5, 9), valor: 80000, pessoa: 'Atacado Brasil'
-    },
-    {
-      tipo: 'DESPESA', descricao: 'Impostos', dataVencimento: new Date(2019, 6, 20),
-      dataPagamento: null, valor: 14312, pessoa: 'Ministério da Fazenda'
-    },
-    {
-      tipo: 'DESPESA', descricao: 'Mensalidade de escola', dataVencimento: new Date(2019, 10, 5),
-      dataPagamento: new Date(2019, 9, 30), valor: 800, pessoa: 'Escola Abelha Rainha'
-    },
-    {
-      tipo: 'RECEITA', descricao: 'Venda de Carro', dataVencimento: new Date(2019, 6, 18),
-      dataPagamento: null, valor: 55000, pessoa: 'Sebastião Souza'
-    },
-    {
-      tipo: 'DESPESA', descricao: 'Aluguel', dataVencimento: new Date(2019, 9, 22),
-      dataPagamento: new Date(2019, 9, 8), valor: 400, pessoa: 'Sr. Roberto'
-    },
-    {
-      tipo: 'DESPESA', descricao: 'Mensalidade academia', dataVencimento: new Date(2019, 6, 13),
-      dataPagamento: null, valor: 180, pessoa: 'Profit Academia'
-    }
-  ];
+  pt: any;
+  totalRegistros = 0;
+  filtro = new LancamentoFiltro();
+  lancamentos = [];
+
+  constructor(private lancamentoService: LancamentoService) {
+  }
+
+  ngOnInit() {
+   // this.pesquisar();
+    this.pt = {
+      firstDayOfWeek: 0,
+      dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+      dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+      dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
+      monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto',
+        'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+      monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+      today: 'Hoje',
+      clear: 'Limpar',
+      dateFormat: 'dd/mm/yy'
+    };
+  }
+
+  pesquisar(pagina = 0) {
+    this.filtro.pagina = pagina;
+    this.lancamentoService.pesquisar(this.filtro)
+      .then(resultado => {
+        this.totalRegistros = resultado.total;
+        this.lancamentos = resultado.lancamentos;
+      });
+  }
+
+  aoMudarPagina(event: LazyLoadEvent) {
+    const pagina = event.first / event.rows;
+    this.pesquisar(pagina);
+  }
 }
