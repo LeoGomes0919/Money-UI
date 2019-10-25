@@ -26,7 +26,7 @@ export class LancamentoService {
 
   setAccessToken() {
     // tslint:disable-next-line: max-line-length
-    this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTcxOTcxODM3LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiJkNWRmODJmMS1lOTEzLTQ4OTctOTQ3ZS0xZWYyZDI2OWY3YjQiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.Ay0M9GqCt0Si3mhbRCSaFDA1H9RCQVH3CBi0ZRrIwHM';
+    this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTcxOTg0MTU5LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI3ZWFhYWI1NS0xYTI3LTQwM2ItODUxNy1lMzViOTM2MDcxOTUiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.sztjVikd-FMXnB3IE96yLWEEMqPtelHp4hyQ08jORsU';
   }
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
@@ -53,7 +53,6 @@ export class LancamentoService {
       params = params.append('dataVencimentoAte', moment(filtro.dataVencimentoFim).format('YYYY-MM-DD'));
     }
 
-    // tslint:disable-next-line: object-literal-key-quotes
     const newHeraderAut = new HttpHeaders(headerSettings);
     return this.http.get<any>(`${this.lancamentosUrl}/?resumo`, { headers: newHeraderAut, params })
       .toPromise()

@@ -7,11 +7,10 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -21,8 +20,7 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     PessoaPesquisaComponent,
-    PessoaCadastroComponent,
-    PessoasGridComponent
+    PessoaCadastroComponent
   ],
   imports: [
     CommonModule,

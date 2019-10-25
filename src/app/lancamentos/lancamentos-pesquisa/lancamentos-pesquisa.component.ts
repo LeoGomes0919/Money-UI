@@ -12,6 +12,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   totalRegistros = 0;
   filtro = new LancamentoFiltro();
   lancamentos = [];
+  yearRange: string = (new Date().getFullYear() - 5) + ':' + (new Date().getFullYear() + 30);
 
   constructor(private lancamentoService: LancamentoService) {
   }
