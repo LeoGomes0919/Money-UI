@@ -26,7 +26,7 @@ export class LancamentoService {
 
   setAccessToken() {
     // tslint:disable-next-line: max-line-length
-    this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTcxOTg0MTU5LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI3ZWFhYWI1NS0xYTI3LTQwM2ItODUxNy1lMzViOTM2MDcxOTUiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.sztjVikd-FMXnB3IE96yLWEEMqPtelHp4hyQ08jORsU';
+    this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTcyMjAwNTg2LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI0YzRjNmE0Mi1lNDFkLTQyMGQtYmY4Mi0wZjJmZDBiMGExODgiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.agMDnaak36qCq1VW4GOG2tZJLPlLyOWRYOqgQJyYbrY';
   }
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
@@ -66,5 +66,19 @@ export class LancamentoService {
 
         return resultado;
       });
+  }
+
+  excluir(codigo: number): Promise<void> {
+    const headerSettings: { [name: string]: string | string[]; } = {};
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    // tslint:disable-next-line: no-string-literal
+    headerSettings['Authorization'] = 'Bearer ' + this.token;
+
+    const newHeraderAut = new HttpHeaders(headerSettings);
+    return this.http.delete(`${this.lancamentosUrl}/${codigo}`, { headers: newHeraderAut })
+      .toPromise()
+      .then(() => null);
   }
 }
