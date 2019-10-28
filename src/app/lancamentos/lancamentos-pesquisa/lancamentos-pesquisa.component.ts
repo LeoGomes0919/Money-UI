@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ConfirmationService } from 'primeng/api';
 import { ToastyService, ToastyEvent } from 'ng2-toasty';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
@@ -21,11 +22,11 @@ export class LancamentosPesquisaComponent implements OnInit {
   constructor(
     private lancamentoService: LancamentoService,
     private toastyService: ToastyService,
-    private confirmatio: ConfirmationService) {
+    private confirmatio: ConfirmationService,
+    private errorHandler: ErrorHandlerService) {
   }
 
   ngOnInit() {
-    // this.pesquisar();
     this.pt = {
       firstDayOfWeek: 0,
       dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
@@ -46,7 +47,8 @@ export class LancamentosPesquisaComponent implements OnInit {
       .then(resultado => {
         this.totalRegistros = resultado.total;
         this.lancamentos = resultado.lancamentos;
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -60,7 +62,8 @@ export class LancamentosPesquisaComponent implements OnInit {
         this.grid.first = 0;
         this.pesquisar();
         this.toastyService.success('Laçamento excluido com sucesso!');
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   confirmarExclusao(lancamento: any) {
