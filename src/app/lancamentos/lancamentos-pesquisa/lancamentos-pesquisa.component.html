@@ -53,20 +53,21 @@
             </td>
             <td class="col-data-field">
               <span class="ui-column-title">Vencimento</span>
-              {{lancamentos.dataVencimento | date:'dd/MM/y'}}
+              {{lancamentos.dataVencimento | date:'dd/MM/y':'UTC-3':'pt'}}
             </td>
             <td class="col-data-field">
               <span class="ui-column-title">Pagamento</span>
-              {{lancamentos.dataPagamento | date:'dd/MM/y'}}
+              {{lancamentos.dataPagamento | date:'dd/MM/y':'UTC-3':'pt'}}
             </td>
             <td [ngStyle]="{ color: lancamentos.tipo === 'DESPESA' ? 'red' : 'blue' }" class="col-valor-field">
               <span class="ui-column-title" style="color: #000 !important;">Valor</span>
-              {{lancamentos.valor | currency:'BRL':'symbol':'1.2-2'}}
+              {{lancamentos.valor | currency:'BRL':'symbol':'1.2-2':'pt'}}
             </td>
             <td class="col-acao">
               <span class="ui-column-title"></span>
               <a class="btn-editar" pTooltip="Editar" tooltipPosition="top" pButton icon="fa fa-pencil"></a>
-              <button class="btn-deletar" pTooltip="Excluir" tooltipPosition="top" pButton icon="fa fa-trash" (click)="excluir(lancamentos)"></button>
+              <button class="btn-deletar" pTooltip="Excluir" tooltipPosition="top" pButton icon="fa fa-trash"
+                (click)="confirmarExclusao(lancamentos)"></button>
             </td>
           </tr>
         </ng-template>

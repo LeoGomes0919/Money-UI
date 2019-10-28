@@ -1,6 +1,9 @@
+import { ConfirmationService } from 'primeng/api';
+import { ToastyService, ToastyEvent } from 'ng2-toasty';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/components/common/api';
+
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
@@ -15,7 +18,10 @@ export class LancamentosPesquisaComponent implements OnInit {
   yearRange: string = (new Date().getFullYear() - 5) + ':' + (new Date().getFullYear() + 30);
   @ViewChild('tabela', { static: false }) grid;
 
-  constructor(private lancamentoService: LancamentoService) {
+  constructor(
+    private lancamentoService: LancamentoService,
+    private toastyService: ToastyService,
+    private confirmatio: ConfirmationService) {
   }
 
   ngOnInit() {
@@ -53,6 +59,16 @@ export class LancamentosPesquisaComponent implements OnInit {
       .then(() => {
         this.grid.first = 0;
         this.pesquisar();
+        this.toastyService.success('Laçamento excluido com sucesso!');
       });
+  }
+
+  confirmarExclusao(lancamento: any) {
+    this.confirmatio.confirm({
+      message: 'Deseja excluir esse registro?',
+      accept: () => {
+        this.excluir(lancamento);
+      }
+    });
   }
 }

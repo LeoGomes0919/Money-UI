@@ -1,3 +1,4 @@
+import { ToastyConfig } from 'ng2-toasty';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(private toastyConfig: ToastyConfig) {
+    this.toastyConfig.theme = 'material';
+    this.toastyConfig.position = 'top-right';
+  }
 }
