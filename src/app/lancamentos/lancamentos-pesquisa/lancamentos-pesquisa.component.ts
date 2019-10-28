@@ -61,7 +61,7 @@ export class LancamentosPesquisaComponent implements OnInit {
       .then(() => {
         this.grid.first = 0;
         this.pesquisar();
-        this.toastyService.success('Laçamento excluido com sucesso!');
+        this.toastyService.success('Registro excluido com sucesso!');
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
