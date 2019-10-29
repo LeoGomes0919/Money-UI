@@ -82,4 +82,17 @@ export class PessoaService {
       .toPromise()
       .then(() => null);
   }
+
+  mudarStatus(codigo: number, ativo: boolean): Promise<any> {
+    const headerSettings: { [name: string]: string | string[]; } = {};
+
+    // tslint:disable-next-line: no-string-literal
+    headerSettings['Authorization'] = 'Bearer ' + this.token;
+    headerSettings['Content-Type'] = 'application/json';
+
+    const newHeraderAut = new HttpHeaders(headerSettings);
+    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers: newHeraderAut })
+      .toPromise()
+      .then(() => null);
+  }
 }

@@ -60,4 +60,17 @@ export class PessoaPesquisaComponent implements OnInit {
       }
     });
   }
+
+  alterarStatus(pessoa: any): void {
+    const novoStatus = !pessoa.ativo;
+
+    this.pessoaService.mudarStatus(pessoa.codigo, novoStatus)
+      .then(() => {
+        const acao = novoStatus ? 'ativada' : 'desativada';
+
+        pessoa.ativo = novoStatus;
+        this.toastyService.success(`Pessoa ${acao} com sucesso!`);
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
 }
