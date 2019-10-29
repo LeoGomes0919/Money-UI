@@ -21,17 +21,16 @@ export class PessoaService {
 
   setAccessToken() {
     // tslint:disable-next-line: max-line-length
-    this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTcyMzU5NDE3LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI3NzRkZGJhYS1mMTVlLTRjMDMtYmViNi1mZDU3YTcwNjRjZTgiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.Iy9Q6tyAB_GcEPzusIBlk00qRvWCC7NAAQldvPuzIjU';
+    this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTcyNDE4MDU5LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIxNTY0ZmZjNi1lNmJhLTQzNjYtOWQzOS05MzNjMjhjMTU4NGYiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.1Yz9zceCMXr-QAM6Pnp8x4Jg-2T5ksENzopk6sHq9dY';
   }
 
   pesquisar(filtro: PessoaFilter): Promise<any> {
     const headerSettings: { [name: string]: string | string[]; } = {};
     let params = new HttpParams();
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
 
     // tslint:disable-next-line: no-string-literal
     headerSettings['Authorization'] = 'Bearer ' + this.token;
+    headerSettings['Content-Type'] = 'application/json';
 
     params = params.append('page', filtro.pagina.toString());
     params = params.append('size', filtro.itensPorPagina.toString());
@@ -57,11 +56,10 @@ export class PessoaService {
 
   listarTodos(): Promise<any> {
     const headerSettings: { [name: string]: string | string[]; } = {};
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
 
     // tslint:disable-next-line: no-string-literal
     headerSettings['Authorization'] = 'Bearer ' + this.token;
+    headerSettings['Content-Type'] = 'application/json';
 
     const newHeraderAut = new HttpHeaders(headerSettings);
     return this.http.get<any>(`${this.pessoasUrl}`, { headers: newHeraderAut })
@@ -71,11 +69,10 @@ export class PessoaService {
 
   excluir(codigo: number): Promise<void> {
     const headerSettings: { [name: string]: string | string[]; } = {};
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
 
     // tslint:disable-next-line: no-string-literal
     headerSettings['Authorization'] = 'Bearer ' + this.token;
+    headerSettings['Content-Type'] = 'application/json';
 
     const newHeraderAut = new HttpHeaders(headerSettings);
     return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers: newHeraderAut })

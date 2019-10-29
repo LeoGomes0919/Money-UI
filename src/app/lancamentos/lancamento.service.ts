@@ -32,11 +32,10 @@ export class LancamentoService {
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
     const headerSettings: { [name: string]: string | string[]; } = {};
     let params = new HttpParams();
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
 
     // tslint:disable-next-line: no-string-literal
     headerSettings['Authorization'] = 'Bearer ' + this.token;
+    headerSettings['Content-Type'] = 'application/json';
 
     params = params.append('page', filtro.pagina.toString());
     params = params.append('size', filtro.itensPorPagina.toString());
@@ -70,11 +69,10 @@ export class LancamentoService {
 
   excluir(codigo: number): Promise<void> {
     const headerSettings: { [name: string]: string | string[]; } = {};
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
 
     // tslint:disable-next-line: no-string-literal
     headerSettings['Authorization'] = 'Bearer ' + this.token;
+    headerSettings['Content-Type'] = 'application/json';
 
     const newHeraderAut = new HttpHeaders(headerSettings);
     return this.http.delete(`${this.lancamentosUrl}/${codigo}`, { headers: newHeraderAut })
