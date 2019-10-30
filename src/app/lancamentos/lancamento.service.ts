@@ -1,3 +1,4 @@
+import { Lancamento } from './../core/model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/Http';
 import { Injectable } from '@angular/core';
 
@@ -22,11 +23,13 @@ export class LancamentoService {
 
   constructor(private http: HttpClient) {
     this.setAccessToken();
+    moment.locale('pt-BR');
+    moment.localeData('pt-BR');
   }
 
   setAccessToken() {
     // tslint:disable-next-line: max-line-length
-    this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTcyNDE4MDU5LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIxNTY0ZmZjNi1lNmJhLTQzNjYtOWQzOS05MzNjMjhjMTU4NGYiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.1Yz9zceCMXr-QAM6Pnp8x4Jg-2T5ksENzopk6sHq9dY';
+    this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTcyNTA4NzYxLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI1ZjA1MDBkOS0wYjVmLTRiZmQtOTQ4NS0xMmVhODhmODQ3YWUiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.6SGIirfE3fCZjQQ2iUyJXBNd7PO41Bl3AeMEZzwespg';
   }
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
@@ -78,5 +81,37 @@ export class LancamentoService {
     return this.http.delete(`${this.lancamentosUrl}/${codigo}`, { headers: newHeraderAut })
       .toPromise()
       .then(() => null);
+  }
+
+  adiconar(lancamento: Lancamento): Promise<Lancamento> {
+    moment.locale();
+    const headerSettings: { [name: string]: string | string[]; } = {};
+
+    // tslint:disable-next-line: no-string-literal
+    headerSettings['Authorization'] = 'Bearer ' + this.token;
+    headerSettings['Content-Type'] = 'application/json';
+
+    const newHeraderAut = new HttpHeaders(headerSettings);
+    return this.http.post<Lancamento>(this.lancamentosUrl, lancamento, { headers: newHeraderAut })
+      .toPromise()
+      .then(response => {
+        const lanc = response;
+
+        this.converterStringsParaDatas([lanc]);
+
+        return lanc;
+      });
+  }
+
+  private converterStringsParaDatas(lancamentos: Lancamento[]) {
+    for (const lancamento of lancamentos) {
+      lancamento.dataVencimento = moment(lancamento.dataVencimento,
+        'YYYY-MM-DD').toDate();
+
+      if (lancamento.dataPagamento) {
+        lancamento.dataPagamento = moment(lancamento.dataPagamento,
+          'YYYY-MM-DD').toDate();
+      }
+    }
   }
 }

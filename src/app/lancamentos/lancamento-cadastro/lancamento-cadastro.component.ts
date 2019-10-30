@@ -1,8 +1,12 @@
 import { PessoaService } from './../../pessoas/pessoa.service';
+import { Lancamento } from '../../core/model';
+import { LancamentoService } from './../lancamento.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 
+import { ToastyService } from 'ng2-toasty';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -15,6 +19,8 @@ export class LancamentoCadastroComponent implements OnInit {
   pt: any;
   categorias = [];
   pessoas = [];
+  formulario: FormGroup;
+  // lancamento = new Lancamento();
 
   opcoes = [
     { label: 'Receita', value: 'RECEITA' },
@@ -24,10 +30,14 @@ export class LancamentoCadastroComponent implements OnInit {
   constructor(
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
-    private errorHandler: ErrorHandlerService
+    private lancamentoService: LancamentoService,
+    private errorHandler: ErrorHandlerService,
+    private toastyService: ToastyService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.configurarFormulario();
     this.carregarCategorias();
     this.carregarPessoas();
     this.pt = {
@@ -41,6 +51,45 @@ export class LancamentoCadastroComponent implements OnInit {
       today: 'Hoje',
       clear: 'Limpar',
       dateFormat: 'dd/mm/yy'
+    };
+  }
+
+  salvar() {
+    this.lancamentoService.adiconar(this.formulario.value)
+      .then(lancamentoAdicionado => {
+        this.toastyService.success('Registro salvo com sucesso!');
+        this.formulario.reset();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  configurarFormulario() {
+    this.formulario = this.formBuilder.group({
+      codigo: [],
+      tipo: ['RECEITA', Validators.required],
+      dataVencimento: [null, Validators.required],
+      dataPagamento: [],
+      descricao: [null, [this.validarObrigatoriedade, this.validarTamanhoMinimo(5)]],
+      valor: [null, Validators.required],
+      pessoa: this.formBuilder.group({
+        codigo: [null, Validators.required],
+        nome: []
+      }),
+      categoria: this.formBuilder.group({
+        codigo: [null, Validators.required],
+        nome: []
+      }),
+      observacao: []
+    });
+  }
+
+  validarObrigatoriedade(input: FormControl) {
+    return (input.value ? null : { obrigatoriedade: true });
+  }
+
+  validarTamanhoMinimo(valor: number) {
+    return (input: FormControl) => {
+      return (!input.value || input.value.length >= valor) ? null : { tamanhoMinimo: { tamanho: valor } };
     };
   }
 

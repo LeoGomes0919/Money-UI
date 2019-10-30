@@ -53,11 +53,11 @@
             </td>
             <td class="col-data-field">
               <span class="ui-column-title">Vencimento</span>
-              {{lancamentos.dataVencimento | date:'dd/MM/y':'UTC-3':'pt'}}
+              {{lancamentos.dataVencimento | date:'dd/MM/yyyy'}}
             </td>
             <td class="col-data-field">
               <span class="ui-column-title">Pagamento</span>
-              {{lancamentos.dataPagamento | date:'dd/MM/y':'UTC-3':'pt'}}
+              {{lancamentos.dataPagamento | date:'dd/MM/yyyy'}}
             </td>
             <td [ngStyle]="{ color: lancamentos.tipo === 'DESPESA' ? 'red' : 'blue' }" class="col-valor-field">
               <span class="ui-column-title" style="color: #000 !important;">Valor</span>
@@ -71,8 +71,12 @@
             </td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="emptymessage" let-lancamentos *ngIf="lancamentos.length==0">
-          <span>Nenhum registro encontrado</span>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6">
+              Nenhum registro encontrado
+            </td>
+          </tr>
         </ng-template>
       </p-table>
     </div>
