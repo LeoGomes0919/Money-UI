@@ -6,10 +6,12 @@ import { Injectable } from '@angular/core';
 })
 export class CategoriaService {
 
-  categoriUrl = 'http://localhost:8080/categorias';
+  categoriasUrl = 'http://localhost:8080/categorias';
   private token: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.setAccessToken();
+  }
 
   setAccessToken() {
     // tslint:disable-next-line: max-line-length
@@ -21,11 +23,10 @@ export class CategoriaService {
 
     // tslint:disable-next-line: no-string-literal
     headerSettings['Authorization'] = 'Bearer ' + this.token;
-    headerSettings['Content-Type'] = 'application/json';
 
     const newHeraderAut = new HttpHeaders(headerSettings);
-    return this.http.get<any>(`${this.categoriUrl}`, { headers: newHeraderAut })
+    return this.http.get<any>(this.categoriasUrl, { headers: newHeraderAut })
       .toPromise()
-      .then(response => response.content);
+      .then(response => response);
   }
 }

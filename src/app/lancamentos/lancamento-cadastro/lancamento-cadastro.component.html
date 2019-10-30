@@ -38,7 +38,7 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" filter="true" placeholder="Selecione"
+        <p-dropdown [options]="categorias" filter="true" placeholder="Selecione" [showClear]="true"
           emptyFilterMessage="Nenhuma registro encontrado" name="categoria" ngModel #categoria="ngModel" required>
           <ng-template let-categoria pTemplate="item">
             <span>{{categoria.label}}</span>
@@ -48,7 +48,7 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
-        <p-dropdown [options]="pessoas" filter="true" placeholder="Selecione"
+        <p-dropdown [options]="pessoas" filter="true" placeholder="Selecione" [showClear]="true"
           emptyFilterMessage="Nenhuma registro encontrado" name="pessoa" ngModel #pessoa="ngModel" required>
           <ng-template let-pessoa pTemplate="item">
             <span>{{pessoa.label}}</span>

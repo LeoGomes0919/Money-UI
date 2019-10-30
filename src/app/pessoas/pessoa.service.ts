@@ -54,15 +54,14 @@ export class PessoaService {
       });
   }
 
-  listarTodos(): Promise<any> {
+  listarTodas(): Promise<any> {
     const headerSettings: { [name: string]: string | string[]; } = {};
 
     // tslint:disable-next-line: no-string-literal
     headerSettings['Authorization'] = 'Bearer ' + this.token;
-    headerSettings['Content-Type'] = 'application/json';
 
     const newHeraderAut = new HttpHeaders(headerSettings);
-    return this.http.get<any>(`${this.pessoasUrl}`, { headers: newHeraderAut })
+    return this.http.get<any>(this.pessoasUrl, { headers: newHeraderAut })
       .toPromise()
       .then(response => response.content);
   }
