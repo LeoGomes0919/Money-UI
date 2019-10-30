@@ -1,5 +1,4 @@
 import { PessoaService } from './../../pessoas/pessoa.service';
-import { Lancamento } from '../../core/model';
 import { LancamentoService } from './../lancamento.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { CategoriaService } from './../../categorias/categoria.service';
