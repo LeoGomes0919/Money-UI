@@ -23,6 +23,7 @@ registerLocaleData(localePt, 'pt');
 const routes: Routes = [
   { path: 'lancamentos', component: LancamentosPesquisaComponent },
   { path: 'lancamentos/novo', component: LancamentoCadastroComponent },
+  { path: 'lancamentos/:codigo/edit', component: LancamentoCadastroComponent },
   { path: 'pessoas', component: PessoaPesquisaComponent },
   { path: 'pessoas/novo', component: PessoaCadastroComponent }
 ];

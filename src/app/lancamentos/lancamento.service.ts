@@ -101,6 +101,44 @@ export class LancamentoService {
       });
   }
 
+  burscarPorCodigo(codigo: number): Promise<Lancamento> {
+    const headerSettings: { [name: string]: string | string[]; } = {};
+
+    // tslint:disable-next-line: no-string-literal
+    headerSettings['Authorization'] = 'Bearer ' + this.token;
+    headerSettings['Content-Type'] = 'application/json';
+
+    const newHeraderAut = new HttpHeaders(headerSettings);
+    return this.http.get<Lancamento>(`${this.lancamentosUrl}/${codigo}`, { headers: newHeraderAut })
+      .toPromise()
+      .then(response => {
+        const lancamento = response;
+
+        this.converterStringsParaDatas([lancamento]);
+
+        return lancamento;
+      });
+  }
+
+  atualizar(lancamento: Lancamento): Promise<Lancamento> {
+    const headerSettings: { [name: string]: string | string[]; } = {};
+
+    // tslint:disable-next-line: no-string-literal
+    headerSettings['Authorization'] = 'Bearer ' + this.token;
+    headerSettings['Content-Type'] = 'application/json';
+
+    const newHeraderAut = new HttpHeaders(headerSettings);
+    return this.http.put<Lancamento>(`${this.lancamentosUrl}/${lancamento.codigo}`, lancamento, { headers: newHeraderAut })
+      .toPromise()
+      .then(response => {
+        const lancamentoAlterado = response;
+
+        this.converterStringsParaDatas([lancamentoAlterado]);
+
+        return lancamentoAlterado;
+      });
+  }
+
   private converterStringsParaDatas(lancamentos: Lancamento[]) {
     for (const lancamento of lancamentos) {
       lancamento.dataVencimento = moment(lancamento.dataVencimento,

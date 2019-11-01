@@ -41,3 +41,7 @@
 .navbar-meuitem a:hover {
     color: #ffffff;
 }
+
+.navbar-meuitem.ativo {
+    background-color: #494541;
+}
