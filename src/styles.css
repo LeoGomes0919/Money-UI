@@ -1,70 +1,74 @@
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #404c51;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #404c51;
 }
 
 label {
-  font-weight: bold;
-  color: #404c51;
+    font-weight: bold;
+    color: #404c51;
 }
 
-@media(min-width:1200px ) {
-  .container {
-    width: 1170px;
-    margin: 0 auto;
-  }
+@media(min-width:1200px) {
+    .container {
+        width: 1170px;
+        margin: 0 auto;
+    }
 }
 
 .col-valor {
-  width: 120px;
+    width: 120px;
 }
 
 .col-acao {
-  width: 85px;
-  text-align: center;
+    width: 85px;
+    text-align: center;
 }
 
 .col-valor-field {
-  text-align: right;
+    text-align: right;
 }
 
 .btn-deletar {
-  margin-left: 5% !important;
-  font-size: 12px !important;
+    margin-left: 5% !important;
+    font-size: 12px !important;
 }
 
 .btn-editar {
-  font-size: 12px !important;
+    font-size: 12px !important;
 }
 
 .col-data {
-  width: 120px;
+    width: 120px;
 }
 
 .col-data-field {
-  text-align: center;
+    text-align: center;
 }
 
 a :hover {
-  color: #fff;
+    color: #fff;
 }
 
 .col-estado {
-  width: 120px;
-  text-align: center;
+    width: 120px;
+    text-align: center;
 }
 
 .col-ativo {
-  width: 120px;
-  text-align: center;
+    width: 120px;
+    text-align: center;
 }
 
 .link-status {
-  color: #000;
+    color: #000;
 }
 
 .link-status:hover {
-  color: #000;
-  text-decoration: underline;
+    color: #000;
+    text-decoration: underline;
+}
+
+.navbar-meuitem a {
+    cursor: pointer !important;
 }

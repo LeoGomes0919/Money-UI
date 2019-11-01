@@ -1,17 +1,17 @@
 <nav class="navbar">
-  <div class="container">
-    <div class="ui-g">
-      <div class="ui-g-12">
-        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i
-            class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
-      </div>
+    <div class="container">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="fa fa-bars fa-lg"
+            aria-hidden="true"></i></a>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <ul class="navbar-menu" [hidden]="!exibindoMenu">
-    <li class="navbar-user"><i class="fa fa-user-circle"></i> Leonardo Gomes</li>
-    <li class="navbar-meuitem"><a href="javascript:;"><i class="fa fa-list-alt"></i> Lançamentos</a></li>
-    <li class="navbar-meuitem"><a href="javascript:;"><i class="fa fa-users"></i> Pessoas</a></li>
-    <li class="navbar-meuitem"><a href="javascript:;"><i class="fa fa-sign-out"></i> Logout</a></li>
-  </ul>
+    <ul class="navbar-menu" [hidden]="!exibindoMenu">
+        <li class="navbar-user"><i class="fa fa-user-circle"></i> Leonardo Gomes</li>
+        <li class="navbar-meuitem"><a routerLink="/lancamentos"><i class="fa fa-list-alt"></i> Lançamentos</a></li>
+        <li class="navbar-meuitem"><a routerLink="/pessoas"><i class="fa fa-users"></i> Pessoas</a></li>
+        <li class="navbar-meuitem"><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
+    </ul>
 </nav>
