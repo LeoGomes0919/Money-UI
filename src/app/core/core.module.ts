@@ -3,14 +3,20 @@ import { LancamentoService } from './../lancamentos/lancamento.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 import { ConfirmationService } from 'primeng/api';
 import { ToastyModule } from 'ng2-toasty';
 
 import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { Title } from '@angular/platform-browser';
+
+registerLocaleData(localePt, 'pt');
 
 @NgModule({
   declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
@@ -30,7 +36,9 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     ErrorHandlerService,
     LancamentoService,
     PessoaService,
-    ConfirmationService
+    ConfirmationService,
+    Title,
+    { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })
 export class CoreModule { }

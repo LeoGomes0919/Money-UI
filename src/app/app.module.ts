@@ -11,15 +11,9 @@ import { LancamentosModule } from './lancamentos/lancamentos.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/Http';
-
-
-import { registerLocaleData } from '@angular/common';
-import localePt from '@angular/common/locales/pt';
-
-registerLocaleData(localePt, 'pt');
 
 const routes: Routes = [
   { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
@@ -45,7 +39,7 @@ const routes: Routes = [
     PessoasModule,
     CoreModule
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,7 @@ import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PessoaService } from './../pessoa.service';
 import { Component, OnInit } from '@angular/core';
 import { Pessoa } from './../../core/model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pessoa-cadastro',
@@ -18,10 +19,12 @@ export class PessoaCadastroComponent implements OnInit {
     private pessoaService: PessoaService,
     private errorHandle: ErrorHandlerService,
     private toastyService: ToastyService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private title: Title
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Nova pessoa');
   }
 
   salvar(form: FormControl) {

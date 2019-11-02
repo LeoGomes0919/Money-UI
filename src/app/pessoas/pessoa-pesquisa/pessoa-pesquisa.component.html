@@ -39,7 +39,10 @@
                         <td class="col-ativo">
                             <span class="ui-column-title">Ativo</span>
                             <a href="javascript:;" (click)="alterarStatus(pessoas)" class="link-status" [pTooltip]="pessoas.ativo === true ? 'Desativar' : 'Ativar'" tooltipPosition="top">
-                                <label [style.color]="pessoas.ativo === true ? 'blue' : 'red'" style="cursor: pointer;">{{pessoas.ativo === true ? 'Ativo' : 'Inativo'}}</label>
+                                <label [style.color]="pessoas.ativo === true ? 'blue' : 'red'" style="cursor: pointer;">
+                                  <i [class]="pessoas.ativo === true ? 'fa fa-unlock' : 'fa fa-lock'"></i> 
+                                  {{pessoas.ativo === true ? 'Ativo' : 'Inativo'}}
+                                </label>
                             </a>
                         </td>
                         <td class="col-acao">
