@@ -75,10 +75,28 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar() {
+    if (this.editando) {
+      this.atualizarLancamento();
+    } else {
+      this.adicionarLancamento();
+    }
+  }
+
+  adicionarLancamento() {
     this.lancamentoService.adiconar(this.formulario.value)
       .then(lancamentoAdicionado => {
         this.toastyService.success('Registro salvo com sucesso!');
         this.formulario.reset();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  atualizarLancamento() {
+    this.lancamentoService.atualizar(this.formulario.value)
+      .then(lancamentoAtualizado => {
+        this.formulario.patchValue(lancamentoAtualizado);
+
+        this.toastyService.success('Registro atualizado com sucesso!');
       })
       .catch(erro => this.errorHandler.handle(erro));
   }

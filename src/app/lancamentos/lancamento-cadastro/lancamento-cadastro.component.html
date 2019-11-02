@@ -11,14 +11,14 @@
 
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>Vencimento</label>
-                <p-calendar name="vencimento" dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" [inline]="false" [readonlyInput]="false" [showIcon]="false" formControlName="dataVencimento"></p-calendar>
+                <p-calendar name="vencimento" showButtonBar="true" dateFormat="dd/mm/yy" [showIcon]="true" [locale]="pt" [inline]="false" [readonlyInput]="false" [showIcon]="false" formControlName="dataVencimento"></p-calendar>
 
                 <app-message [control]="formulario.get('dataVencimento')" error="required" text="Informe uma data de vencimento"></app-message>
             </div>
 
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>{{ formulario.get('tipo').value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
-                <p-calendar dateFormat="dd/mm/yy" name="dataPagamento" [showIcon]="true" [locale]="pt" formControlName="dataPagamento">
+                <p-calendar dateFormat="dd/mm/yy" showButtonBar="true" name="dataPagamento" [showIcon]="true" [locale]="pt" formControlName="dataPagamento">
                 </p-calendar>
             </div>
 
