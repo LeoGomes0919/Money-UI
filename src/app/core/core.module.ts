@@ -10,9 +10,10 @@ import { ToastyModule } from 'ng2-toasty';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   imports: [
     CommonModule,
     RouterModule,

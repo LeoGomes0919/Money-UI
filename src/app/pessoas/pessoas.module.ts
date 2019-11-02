@@ -38,9 +38,6 @@ import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
     DropdownModule,
     InputMaskModule
   ],
-  exports: [
-    PessoaPesquisaComponent,
-    PessoaCadastroComponent
-  ]
+  exports: []
 })
 export class PessoasModule { }

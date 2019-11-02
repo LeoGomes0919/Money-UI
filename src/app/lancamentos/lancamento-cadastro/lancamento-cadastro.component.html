@@ -6,7 +6,7 @@
             </div>
 
             <div class="ui-g-12">
-                <p-selectButton name="tipo" [options]="opcoes" formControlName="tipo"></p-selectButton>
+                <p-selectButton name="tipo" [options]="tipos" formControlName="tipo"></p-selectButton>
             </div>
 
             <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -53,7 +53,8 @@
 
             <div class="ui-g-12">
                 <button pButton type="submit" label="Salvar" icon="pi pi-save" [disabled]="!formulario.valid"></button>
-                <button pButton type="button" label="Novo" icon="pi pi-plus" class="ui-button-info btn-novo"></button>
+                <button pButton type="button" label="Novo" icon="pi pi-plus" class="ui-button-info btn-novo" (click)="novo()">
+                </button>
                 <a routerLink="/lancamentos" class="link-pesquisa">Voltar para a pesquisa</a>
             </div>
         </div>

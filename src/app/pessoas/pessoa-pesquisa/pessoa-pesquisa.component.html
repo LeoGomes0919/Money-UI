@@ -39,13 +39,13 @@
                         <td class="col-ativo">
                             <span class="ui-column-title">Ativo</span>
                             <a href="javascript:;" (click)="alterarStatus(pessoas)" class="link-status" [pTooltip]="pessoas.ativo === true ? 'Desativar' : 'Ativar'" tooltipPosition="top">
-                {{pessoas.ativo === true ? 'Ativo' : 'Inativo'}}
-              </a>
+                                <label [style.color]="pessoas.ativo === true ? 'blue' : 'red'" style="cursor: pointer;">{{pessoas.ativo === true ? 'Ativo' : 'Inativo'}}</label>
+                            </a>
                         </td>
                         <td class="col-acao">
                             <span class="ui-column-title"></span>
-                            <a class="btn-editar" pTooltip="Editar" tooltipPosition="top" pButton icon="fa fa-pencil"></a>
-                            <button class="btn-deletar" pTooltip="Excluir" tooltipPosition="top" pButton icon="fa fa-trash" (click)="confirmarExclusao(pessoas)"></button>
+                            <button pButton type="button" class="btn-editar ui-button-info" pTooltip="Editar" tooltipPosition="top" pButton icon="fa fa-pencil"></button>
+                            <button type="button" class="btn-deletar ui-button-danger" pTooltip="Excluir" tooltipPosition="top" pButton icon="fa fa-trash" (click)="confirmarExclusao(pessoas)"></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -60,6 +60,6 @@
         </div>
     </div>
     <div class="ui-g-12">
-        <a pButton routerLink="/pessoas/novo" label="Nova Pessoa" icon="pi pi-plus" class="btn-novo"></a>
+        <button type="button" pButton routerLink="/pessoas/novo" label="Nova Pessoa" icon="pi pi-plus" class="btn-novo ui-button-info"></button>
     </div>
 </div>

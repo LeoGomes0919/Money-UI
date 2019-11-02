@@ -42,9 +42,6 @@ import { CommonModule } from '@angular/common';
     CurrencyMaskModule,
     InputMaskModule
   ],
-  exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
-  ]
+  exports: []
 })
 export class LancamentosModule { }

@@ -55,8 +55,8 @@
                         </td>
                         <td class="col-acao">
                             <span class="ui-column-title"></span>
-                            <a class="btn-editar" pTooltip="Editar" tooltipPosition="top" pButton icon="fa fa-pencil" [routerLink]="['/lancamentos', lancamentos.codigo, 'edit']"></a>
-                            <button class="btn-deletar" pTooltip="Excluir" tooltipPosition="top" pButton icon="fa fa-trash" (click)="confirmarExclusao(lancamentos)"></button>
+                            <button pButton type="button" class="btn-editar ui-button-info" pTooltip="Editar" tooltipPosition="top" icon="fa fa-pencil" [routerLink]="['/lancamentos', lancamentos.codigo, 'edit']"></button>
+                            <button pButton type="button" class="btn-deletar ui-button-danger" pTooltip="Excluir" tooltipPosition="top" icon="fa fa-trash" (click)="confirmarExclusao(lancamentos)"></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -71,6 +71,6 @@
         </div>
     </div>
     <div class="ui-g-12">
-        <a pButton routerLink="/lancamentos/novo" label="Novo Lançamento" icon="pi pi-plus"></a>
+        <button pButton type="button" routerLink="/lancamentos/novo" label="Novo Lançamento" icon="pi pi-plus" class="btn-novo ui-button-info"></button>
     </div>
 </div>

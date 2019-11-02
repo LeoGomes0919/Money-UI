@@ -1,3 +1,4 @@
+import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 import { PessoaCadastroComponent } from './pessoas/pessoa-cadastro/pessoa-cadastro.component';
 import { PessoaPesquisaComponent } from './pessoas/pessoa-pesquisa/pessoa-pesquisa.component';
 import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
@@ -21,11 +22,14 @@ import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt, 'pt');
 
 const routes: Routes = [
+  { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
   { path: 'lancamentos', component: LancamentosPesquisaComponent },
   { path: 'lancamentos/novo', component: LancamentoCadastroComponent },
   { path: 'lancamentos/:codigo/edit', component: LancamentoCadastroComponent },
   { path: 'pessoas', component: PessoaPesquisaComponent },
-  { path: 'pessoas/novo', component: PessoaCadastroComponent }
+  { path: 'pessoas/novo', component: PessoaCadastroComponent },
+  { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
+  { path: '**', redirectTo: 'pagina-nao-encontrada' },
 ];
 
 @NgModule({
