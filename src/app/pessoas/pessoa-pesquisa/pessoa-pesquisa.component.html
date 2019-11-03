@@ -47,7 +47,7 @@
                         </td>
                         <td class="col-acao">
                             <span class="ui-column-title"></span>
-                            <button pButton type="button" class="btn-editar ui-button-info" pTooltip="Editar" tooltipPosition="top" pButton icon="fa fa-pencil"></button>
+                            <button pButton type="button" class="btn-editar ui-button-info" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/pessoas', pessoas.codigo, 'edit']" icon="fa fa-pencil"></button>
                             <button type="button" class="btn-deletar ui-button-danger" pTooltip="Excluir" tooltipPosition="top" pButton icon="fa fa-trash" (click)="confirmarExclusao(pessoas)"></button>
                         </td>
                     </tr>

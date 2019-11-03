@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'lancamentos/:codigo/edit', component: LancamentoCadastroComponent },
   { path: 'pessoas', component: PessoaPesquisaComponent },
   { path: 'pessoas/novo', component: PessoaCadastroComponent },
+  { path: 'pessoas/:codigo/edit', component: PessoaCadastroComponent },
   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
   { path: '**', redirectTo: 'pagina-nao-encontrada' },
 ];

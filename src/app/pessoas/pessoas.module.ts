@@ -5,6 +5,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 import { SharedModule } from './../shared/shared.module';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
@@ -36,7 +37,8 @@ import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
     TooltipModule,
     SelectButtonModule,
     DropdownModule,
-    InputMaskModule
+    InputMaskModule,
+    InputSwitchModule
   ],
   exports: []
 })

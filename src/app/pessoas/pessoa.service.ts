@@ -108,4 +108,30 @@ export class PessoaService {
         return pess;
       });
   }
+
+  bucarPorCodigo(codigo: number): Promise<Pessoa> {
+    const headerSettings: { [name: string]: string | string[]; } = {};
+
+    // tslint:disable-next-line: no-string-literal
+    headerSettings['Authorization'] = 'Bearer ' + this.token;
+    headerSettings['Content-Type'] = 'application/json';
+
+    const newHeraderAut = new HttpHeaders(headerSettings);
+    return this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`, { headers: newHeraderAut })
+      .toPromise()
+      .then(response => response);
+  }
+
+  atualizar(pessoa: Pessoa): Promise<Pessoa> {
+    const headerSettings: { [name: string]: string | string[]; } = {};
+
+    // tslint:disable-next-line: no-string-literal
+    headerSettings['Authorization'] = 'Bearer ' + this.token;
+    headerSettings['Content-Type'] = 'application/json';
+
+    const newHeraderAut = new HttpHeaders(headerSettings);
+    return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa, { headers: newHeraderAut })
+      .toPromise()
+      .then(response => response);
+  }
 }

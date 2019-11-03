@@ -2,7 +2,7 @@
     <form autocomplete="off" #formPessoa="ngForm" (ngSubmit)="salvar(formPessoa)">
         <div class="ui-g">
             <div class="ui-g-12">
-                <h1>Nova Pessoa</h1>
+                <h1>{{ editando ? 'Edição de': 'Novo' }} Pessoa</h1>
             </div>
 
             <div class="ui-g-12 ui-fluid">
@@ -51,9 +51,14 @@
                 <app-message [control]="estado" error="required" text="Informe o estado"></app-message>
             </div>
 
+            <div class="ui-g-12 ui-md-3 ui-fluid">
+                <label>Status</label>
+                <p-selectButton [options]="status" [(ngModel)]="pessoa.ativo" name="ativo" #ativo="ngModel"></p-selectButton>
+            </div>
+
             <div class="ui-g-12">
                 <button pButton type="submit" icon="pi pi-save" label="Salvar" [disabled]="!formPessoa.valid"></button>
-                <button pButton type="button" icon="pi pi-plus" class="btn-novo ui-button-info" label="Novo"></button>
+                <button pButton type="button" icon="pi pi-plus" class="btn-novo ui-button-info" label="Novo" (click)="novo(formPessoa)"></button>
                 <a routerLink="/pessoas" class="link-pesquisa">Voltar para a pesquisa</a>
             </div>
         </div>
