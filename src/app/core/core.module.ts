@@ -1,3 +1,4 @@
+import { AuthService } from './../seguranca/auth.service';
 import { PessoaService } from './../pessoas/pessoa.service';
 import { LancamentoService } from './../lancamentos/lancamento.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -38,6 +39,7 @@ registerLocaleData(localePt, 'pt');
     PessoaService,
     ConfirmationService,
     Title,
+    AuthService,
     { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })

@@ -9,7 +9,7 @@
                 <input pInputText type="email" name="usuario" placeholder="E-mail" ngModel required #usuario> &nbsp;
                 <input pInputText type="password" name="senha" placeholder="Senha" ngModel required #senha>
                 <p-footer>
-                    <button pButton type="submit" label="Login" [disabled]="!f.valid" (click)="login(usuario.value, senha.value)"></button>
+                    <button pButton type="submit" icon="pi pi-sign-in" label="Login" [disabled]="!f.valid" (click)="login(usuario.value, senha.value)"></button>
                 </p-footer>
             </p-panel>
         </div>
