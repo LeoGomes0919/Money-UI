@@ -8,6 +8,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
 
 import { ConfirmationService } from 'primeng/api';
 import { ToastyModule } from 'ng2-toasty';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 import { RouterModule } from '@angular/router';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -19,6 +20,10 @@ import { Title } from '@angular/platform-browser';
 
 registerLocaleData(localePt, 'pt');
 
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
+
 @NgModule({
   declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   imports: [
@@ -26,6 +31,11 @@ registerLocaleData(localePt, 'pt');
     RouterModule,
     ToastyModule.forRoot(),
     ConfirmDialogModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter
+      }
+    })
   ],
   exports: [
     NavbarComponent,
@@ -40,6 +50,7 @@ registerLocaleData(localePt, 'pt');
     ConfirmationService,
     Title,
     AuthService,
+    JwtHelperService,
     { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })
