@@ -1,3 +1,4 @@
+import { LoginFormComponent } from './seguranca/login-form/login-form.component';
 import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'pessoas', component: PessoaPesquisaComponent },
   { path: 'pessoas/novo', component: PessoaCadastroComponent },
   { path: 'pessoas/:codigo/edit', component: PessoaCadastroComponent },
+  { path: 'login', component: LoginFormComponent },
   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
   { path: '**', redirectTo: 'pagina-nao-encontrada' },
 ];

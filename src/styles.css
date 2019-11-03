@@ -51,8 +51,8 @@ a :hover {
 }
 
 .col-estado {
-    width: 120px;
-    text-align: center;
+    width: 200px;
+    text-align: justify;
 }
 
 .col-ativo {
