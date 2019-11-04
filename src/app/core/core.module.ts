@@ -20,22 +20,13 @@ import { Title } from '@angular/platform-browser';
 
 registerLocaleData(localePt, 'pt');
 
-export function tokenGetter() {
-  return localStorage.getItem('access_token');
-}
-
 @NgModule({
   declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   imports: [
     CommonModule,
     RouterModule,
     ToastyModule.forRoot(),
-    ConfirmDialogModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter
-      }
-    })
+    ConfirmDialogModule
   ],
   exports: [
     NavbarComponent,

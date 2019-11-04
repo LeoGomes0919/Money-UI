@@ -18,19 +18,15 @@ export class AuthService {
   }
 
   login(usuario: string, senha: string): Promise<void> {
-    const headerSettings: { [name: string]: string | string[]; } = {};
-
-    // tslint:disable-next-line: no-string-literal
-    headerSettings['Authorization'] = 'Basic YW5ndWxhcjpAbmd1bEByMA==';
-    headerSettings['Content-Type'] = 'application/x-www-form-urlencoded';
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/x-www-form-urlencoded')
+      .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==');
 
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
-    const newHeraderAut = new HttpHeaders(headerSettings);
-    return this.http.post<any>(this.oauthTokenUrl, body, { headers: newHeraderAut })
+    return this.http.post<any>(this.oauthTokenUrl, body, { headers, withCredentials: true })
       .toPromise()
       .then(response => {
-        console.log(response);
         this.armazenarToken(response.access_token);
       })
       .catch(response => {
@@ -45,11 +41,11 @@ export class AuthService {
 
   private armazenarToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
-    localStorage.setItem('token', token);
+    localStorage.setItem('access_token', token);
   }
 
   private carregarToken() {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
 
     if (token) {
       this.armazenarToken(token);
