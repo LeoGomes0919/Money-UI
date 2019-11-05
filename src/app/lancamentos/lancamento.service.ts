@@ -1,5 +1,7 @@
+import { environment } from './../../environments/environment';
+import { MoneyHttp } from './../seguranca/mony-http';
 import { Lancamento } from './../core/model';
-import { HttpClient, HttpParams } from '@angular/common/Http';
+import { HttpParams } from '@angular/common/Http';
 import { Injectable } from '@angular/core';
 
 import * as moment from 'moment';
@@ -18,14 +20,19 @@ export class LancamentoFiltro {
 
 export class LancamentoService {
 
-  lancamentosUrl = 'http://localhost:8080/lancamentos';
-  private token: string;
+  lancamentosUrl: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: MoneyHttp) {
+    this.lancamentosUrl = `${environment.apiUrl}/lancamentos`;
   }
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
-    let params = new HttpParams();
+    let params = new HttpParams({
+      fromObject: {
+        page: filtro.pagina.toString(),
+        size: filtro.itensPorPagina.toString()
+      }
+    });
 
     params = params.append('page', filtro.pagina.toString());
     params = params.append('size', filtro.itensPorPagina.toString());

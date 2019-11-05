@@ -1,3 +1,5 @@
+import { environment } from './../../environments/environment';
+import { MoneyHttp } from './../seguranca/mony-http';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/Http';
 import { Injectable } from '@angular/core';
 import { Pessoa } from '../core/model';
@@ -13,35 +15,25 @@ export class PessoaFilter {
 })
 export class PessoaService {
 
-  pessoasUrl = 'http://localhost:8080/pessoas';
-  private token: string;
+  pessoasUrl: string;
 
-  constructor(private http: HttpClient) {
-    this.setAccessToken();
-  }
-
-  setAccessToken() {
-    // tslint:disable-next-line: max-line-length
-    this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTcyODc0NDE5LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI3ZGYxNzhmMC0zY2Q5LTQ2MTQtOWNhYi1lN2E2YThiNmIwNjciLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.3SB7KLi2lBiJCHwAi3svxtkpmrD6x8YdvNzMdUN9Xfo';
+  constructor(private http: MoneyHttp) {
+    this.pessoasUrl = `${environment.apiUrl}/pessoas`;
   }
 
   pesquisar(filtro: PessoaFilter): Promise<any> {
-    const headerSettings: { [name: string]: string | string[]; } = {};
-    let params = new HttpParams();
-
-    // tslint:disable-next-line: no-string-literal
-    headerSettings['Authorization'] = 'Bearer ' + this.token;
-    headerSettings['Content-Type'] = 'application/json';
-
-    params = params.append('page', filtro.pagina.toString());
-    params = params.append('size', filtro.itensPorPagina.toString());
+    let params = new HttpParams({
+      fromObject: {
+        page: filtro.pagina.toString(),
+        size: filtro.itensPorPagina.toString()
+      }
+    });
 
     if (filtro.nome) {
       params = params.append('nome', filtro.nome);
     }
 
-    const newHeraderAut = new HttpHeaders(headerSettings);
-    return this.http.get<any>(`${this.pessoasUrl}`, { headers: newHeraderAut, params })
+    return this.http.get<any>(`${this.pessoasUrl}`, { params })
       .toPromise()
       .then(response => {
         const pessoas = response.content;
@@ -56,52 +48,28 @@ export class PessoaService {
   }
 
   listarTodas(): Promise<any> {
-    const headerSettings: { [name: string]: string | string[]; } = {};
-
-    // tslint:disable-next-line: no-string-literal
-    headerSettings['Authorization'] = 'Bearer ' + this.token;
-
-    const newHeraderAut = new HttpHeaders(headerSettings);
-    return this.http.get<any>(this.pessoasUrl, { headers: newHeraderAut })
+    return this.http.get<any>(this.pessoasUrl)
       .toPromise()
       .then(response => response.content);
   }
 
   excluir(codigo: number): Promise<void> {
-    const headerSettings: { [name: string]: string | string[]; } = {};
-
-    // tslint:disable-next-line: no-string-literal
-    headerSettings['Authorization'] = 'Bearer ' + this.token;
-    headerSettings['Content-Type'] = 'application/json';
-
-    const newHeraderAut = new HttpHeaders(headerSettings);
-    return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers: newHeraderAut })
+    return this.http.delete(`${this.pessoasUrl}/${codigo}`)
       .toPromise()
       .then(() => null);
   }
 
   mudarStatus(codigo: number, ativo: boolean): Promise<any> {
-    const headerSettings: { [name: string]: string | string[]; } = {};
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json');
 
-    // tslint:disable-next-line: no-string-literal
-    headerSettings['Authorization'] = 'Bearer ' + this.token;
-    headerSettings['Content-Type'] = 'application/json';
-
-    const newHeraderAut = new HttpHeaders(headerSettings);
-    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers: newHeraderAut })
+    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
       .toPromise()
       .then(() => null);
   }
 
   adicionarPessoa(pessoa: Pessoa): Promise<Pessoa> {
-    const headerSettings: { [name: string]: string | string[]; } = {};
-
-    // tslint:disable-next-line: no-string-literal
-    headerSettings['Authorization'] = 'Bearer ' + this.token;
-    headerSettings['Content-Type'] = 'application/json';
-
-    const newHeraderAut = new HttpHeaders(headerSettings);
-    return this.http.post<Pessoa>(this.pessoasUrl, pessoa, { headers: newHeraderAut })
+    return this.http.post<Pessoa>(this.pessoasUrl, pessoa)
       .toPromise()
       .then(response => {
         const pess = response;
@@ -110,27 +78,13 @@ export class PessoaService {
   }
 
   bucarPorCodigo(codigo: number): Promise<Pessoa> {
-    const headerSettings: { [name: string]: string | string[]; } = {};
-
-    // tslint:disable-next-line: no-string-literal
-    headerSettings['Authorization'] = 'Bearer ' + this.token;
-    headerSettings['Content-Type'] = 'application/json';
-
-    const newHeraderAut = new HttpHeaders(headerSettings);
-    return this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`, { headers: newHeraderAut })
+    return this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`)
       .toPromise()
       .then(response => response);
   }
 
   atualizar(pessoa: Pessoa): Promise<Pessoa> {
-    const headerSettings: { [name: string]: string | string[]; } = {};
-
-    // tslint:disable-next-line: no-string-literal
-    headerSettings['Authorization'] = 'Bearer ' + this.token;
-    headerSettings['Content-Type'] = 'application/json';
-
-    const newHeraderAut = new HttpHeaders(headerSettings);
-    return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa, { headers: newHeraderAut })
+    return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa)
       .toPromise()
       .then(response => response);
   }

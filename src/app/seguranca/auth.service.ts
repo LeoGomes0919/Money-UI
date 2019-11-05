@@ -39,6 +39,37 @@ export class AuthService {
       });
   }
 
+  isAccessTokenInvalido() {
+    const token = localStorage.getItem('access_token');
+
+    return !token || this.jwtHelper.isTokenExpired(token);
+  }
+
+  obterNovoAccessToken(): Promise<void> {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/x-www-form-urlencoded')
+      .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==');
+
+    const body = 'grant_type=refresh_token';
+
+    return this.http.post<any>(this.oauthTokenUrl, body, { headers, withCredentials: true })
+      .toPromise()
+      .then(response => {
+        this.armazenarToken(response.access_token);
+
+        console.log('Novo access toke criado!');
+        return Promise.resolve(null);
+      })
+      .catch(response => {
+        console.log('Erro ao renovar token.', response);
+        return Promise.resolve(null);
+      });
+  }
+
+  temPermissao(permissao: string) {
+    return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
+  }
+
   private armazenarToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
     localStorage.setItem('access_token', token);

@@ -1,3 +1,4 @@
+import { MoneyHttp } from './../seguranca/mony-http';
 import { AuthService } from './../seguranca/auth.service';
 import { PessoaService } from './../pessoas/pessoa.service';
 import { LancamentoService } from './../lancamentos/lancamento.service';
@@ -43,6 +44,7 @@ registerLocaleData(localePt, 'pt');
     AuthService,
     MessageService,
     JwtHelperService,
+    MoneyHttp,
     { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })

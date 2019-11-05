@@ -5,8 +5,7 @@ import { LancamentoService } from './../lancamento.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 
-import { ToastyService } from 'ng2-toasty';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -96,7 +95,7 @@ export class LancamentoCadastroComponent implements OnInit {
   adicionarLancamento() {
     this.lancamentoService.adiconar(this.formulario.value)
       .then(lancamentoAdicionado => {
-        this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Registro salvo com sucesso!'});
+        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Registro salvo com sucesso!' });
         this.router.navigate(['/lancamentos', lancamentoAdicionado.codigo, 'edit']);
         this.atualizarTituloEdicao();
       })
@@ -108,7 +107,7 @@ export class LancamentoCadastroComponent implements OnInit {
       .then(lancamentoAtualizado => {
         this.formulario.patchValue(lancamentoAtualizado);
 
-        this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Registro atualizado com sucesso!'});
+        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Registro atualizado com sucesso!' });
         this.atualizarTituloEdicao();
       })
       .catch(erro => this.errorHandler.handle(erro));
