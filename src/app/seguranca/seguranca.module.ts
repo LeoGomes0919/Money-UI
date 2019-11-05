@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
@@ -30,6 +31,9 @@ export function tokenGetter() {
       }
     })
   ],
-  declarations: [LoginFormComponent]
+  declarations: [LoginFormComponent],
+  providers: [
+    AuthGuard
+  ]
 })
 export class SegurancaModule { }

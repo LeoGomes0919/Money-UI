@@ -56,7 +56,7 @@
                         <td class="col-acao">
                             <span class="ui-column-title"></span>
                             <button pButton type="button" class="btn-editar ui-button-info" pTooltip="Editar" tooltipPosition="top" icon="fa fa-pencil" [routerLink]="['/lancamentos', lancamentos.codigo, 'edit']"></button>
-                            <button pButton type="button" class="btn-deletar ui-button-danger" pTooltip="Excluir" tooltipPosition="top" icon="fa fa-trash" (click)="confirmarExclusao(lancamentos)"></button>
+                            <button pButton type="button" class="btn-deletar ui-button-danger" pTooltip="Excluir" tooltipPosition="top" icon="fa fa-trash" (click)="confirmarExclusao(lancamentos)" [disabled]="!authService.temPermissao('ROLE_REMOVER_LANCAMENTO')"></button>
                         </td>
                     </tr>
                 </ng-template>
