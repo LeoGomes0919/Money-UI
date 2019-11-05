@@ -1,4 +1,4 @@
-import { ToastyService } from 'ng2-toasty';
+import { MessageService } from 'primeng/api';
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/Http';
 
@@ -7,7 +7,7 @@ import { HttpErrorResponse } from '@angular/common/Http';
 })
 export class ErrorHandlerService {
 
-  constructor(private toasty: ToastyService) { }
+  constructor(private messageService: MessageService) { }
 
   handle(errorResponse: HttpErrorResponse) {
     let msg: string;
@@ -30,6 +30,6 @@ export class ErrorHandlerService {
       console.error('Ocorreu um erro', errorResponse);
     }
 
-    this.toasty.error(msg);
+    this.messageService.add({ severity: 'error', summary: 'Erro', detail: msg });
   }
 }

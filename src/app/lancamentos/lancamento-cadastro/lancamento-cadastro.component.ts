@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { Lancamento } from './../../core/model';
 import { PessoaService } from './../../pessoas/pessoa.service';
 import { LancamentoService } from './../lancamento.service';
@@ -34,8 +35,8 @@ export class LancamentoCadastroComponent implements OnInit {
     private pessoaService: PessoaService,
     private lancamentoService: LancamentoService,
     private errorHandler: ErrorHandlerService,
-    private toastyService: ToastyService,
     private formBuilder: FormBuilder,
+    private messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router,
     private title: Title
@@ -95,8 +96,7 @@ export class LancamentoCadastroComponent implements OnInit {
   adicionarLancamento() {
     this.lancamentoService.adiconar(this.formulario.value)
       .then(lancamentoAdicionado => {
-        this.toastyService.success('Registro salvo com sucesso!');
-
+        this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Registro salvo com sucesso!'});
         this.router.navigate(['/lancamentos', lancamentoAdicionado.codigo, 'edit']);
         this.atualizarTituloEdicao();
       })
@@ -108,7 +108,7 @@ export class LancamentoCadastroComponent implements OnInit {
       .then(lancamentoAtualizado => {
         this.formulario.patchValue(lancamentoAtualizado);
 
-        this.toastyService.success('Registro atualizado com sucesso!');
+        this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Registro atualizado com sucesso!'});
         this.atualizarTituloEdicao();
       })
       .catch(erro => this.errorHandler.handle(erro));

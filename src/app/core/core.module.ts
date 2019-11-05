@@ -6,9 +6,9 @@ import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastyModule } from 'ng2-toasty';
-import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { RouterModule } from '@angular/router';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -26,7 +26,7 @@ registerLocaleData(localePt, 'pt');
     CommonModule,
     RouterModule,
     ToastyModule.forRoot(),
-    ConfirmDialogModule
+    ConfirmDialogModule,
   ],
   exports: [
     NavbarComponent,
@@ -41,6 +41,7 @@ registerLocaleData(localePt, 'pt');
     ConfirmationService,
     Title,
     AuthService,
+    MessageService,
     JwtHelperService,
     { provide: LOCALE_ID, useValue: 'pt' }
   ]

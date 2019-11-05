@@ -1,5 +1,5 @@
 import { Lancamento } from './../core/model';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/Http';
+import { HttpClient, HttpParams } from '@angular/common/Http';
 import { Injectable } from '@angular/core';
 
 import * as moment from 'moment';
