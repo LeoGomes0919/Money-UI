@@ -11,6 +11,6 @@
         <li class="navbar-user"><i class="fa fa-user-circle"></i> {{ authService.jwtPayload?.nome }}</li>
         <li class="navbar-meuitem" routerLinkActive="ativo" *ngIf="authService.temPermissao('ROLE_PESQUISAR_LANCAMENTO')"><a routerLink="/lancamentos"><i class="fa fa-list-alt"></i> Lançamentos</a></li>
         <li class="navbar-meuitem" routerLinkActive="ativo" *ngIf="authService.temPermissao('ROLE_PESQUISAR_PESSOA')"><a routerLink="/pessoas"><i class="fa fa-users"></i> Pessoas</a></li>
-        <li class="navbar-meuitem"><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
+        <li class="navbar-meuitem"><a href="javascript:;" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
     </ul>
 </nav>

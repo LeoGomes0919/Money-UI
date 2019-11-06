@@ -83,6 +83,11 @@ export class AuthService {
     }
   }
 
+  limparAccessToken() {
+    localStorage.removeItem('access_token');
+    this.jwtPayload = null;
+  }
+
   temQualquerPermissao(roles) {
     for (const role of roles) {
       if (this.temPermissao(role)) {

@@ -1,3 +1,4 @@
+import { LogoutService } from './logout.service';
 import { AuthGuard } from './auth.guard';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -33,7 +34,8 @@ export function tokenGetter() {
   ],
   declarations: [LoginFormComponent],
   providers: [
-    AuthGuard
+    AuthGuard,
+    LogoutService
   ]
 })
 export class SegurancaModule { }
