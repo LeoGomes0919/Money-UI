@@ -11,7 +11,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: 'lancamentos',
+    pathMatch: 'full',
+    data: { roles: ['ROLE_PESQUISAR_LANCAMENTO'] }
+  },
   {
     path: 'lancamentos',
     component: LancamentosPesquisaComponent,
