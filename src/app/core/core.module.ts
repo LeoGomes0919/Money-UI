@@ -13,14 +13,13 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { RouterModule } from '@angular/router';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 
-import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { Title } from '@angular/platform-browser';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 
-registerLocaleData(localePt, 'pt');
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [

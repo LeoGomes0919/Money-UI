@@ -1,9 +1,9 @@
+import { LancamentosModule } from './lancamentos/lancamentos.module';
+import { PessoasModule } from './pessoas/pessoas.module';
 import { SegurancaModule } from './seguranca/seguranca.module';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-import { PessoasModule } from './pessoas/pessoas.module';
 import { AppComponent } from './app.component';
-import { LancamentosModule } from './lancamentos/lancamentos.module';
 
 import { ToastModule } from 'primeng/toast';
 
@@ -21,9 +21,9 @@ import { HttpClientModule } from '@angular/common/Http';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    LancamentosModule,
-    PessoasModule,
     CoreModule,
+    PessoasModule,
+    LancamentosModule,
     SegurancaModule,
     AppRoutingModule,
     ToastModule
