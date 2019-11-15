@@ -1,0 +1,10 @@
+.ui-panel-title {
+    font-size: 22px;
+    display: inline-block;
+    margin-top: 2px
+}
+
+.ui-panel {
+    text-align: center !important;
+    margin-top: 70px;
+}
